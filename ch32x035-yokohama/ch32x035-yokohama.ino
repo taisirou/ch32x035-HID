@@ -74,7 +74,6 @@ void loop() {
   BR1sw = digitalRead(BR1);
   BR2sw = digitalRead(BR2);
   BR3sw = digitalRead(BR3);
-
   MC0sw = digitalRead(MC0);
   MC1sw = digitalRead(MC1);
   MC2sw = digitalRead(MC2);
@@ -106,10 +105,7 @@ void loop() {
   }
   BEFORREB = NOWREB;
 
-  if (MC0sw == OFF  &&  BR0sw == OFF && BR1sw == ON && BR2sw == OFF && BR3sw == ON) {
-    Serial.print("B0\r");
-  }
-  if (MC0sw == OFF  &&  BR0sw == OFF && BR1sw == ON && BR2sw == ON && BR3sw == ON) {
+  if (MC0sw == OFF  &&  BR0sw == OFF && BR1sw == ON && BR2sw == ON  && BR3sw == ON) {
     Serial.print("B1\r");
   }
   if (MC0sw == OFF  &&  BR0sw == OFF && BR1sw == ON && BR2sw == ON && BR3sw == OFF) {
@@ -127,20 +123,20 @@ void loop() {
   if (MC0sw == OFF  &&  BR0sw == ON && BR1sw == ON && BR2sw == OFF && BR3sw == ON ) {
     Serial.print("B998\r");
   }
-  if (BR3sw == ON &&  MC0sw == OFF && MC1sw == OFF && MC2sw == OFF && MC3sw == OFF) {
-    Serial.print("P0\r");
-  }
-  if (BR3sw == ON &&  MC0sw == ON && MC1sw == OFF && MC2sw == OFF && MC3sw == OFF) {
-    Serial.print("P1\r");
-  }
-  if (BR3sw == ON &&  MC0sw == ON && MC1sw == ON && MC2sw == OFF && MC3sw == OFF) {
-    Serial.print("P2\r");
-  }
-  if (BR3sw == ON &&  MC0sw == ON && MC1sw == ON && MC2sw == ON && MC3sw == OFF) {
-    Serial.print("P3\r");
+  if (MC0sw == OFF  &&  BR0sw == OFF && BR1sw == ON && BR2sw == OFF && BR3sw == ON) {
+    Serial.print("B0\rP0\r");
   }
   if (BR3sw == ON &&  MC0sw == ON && MC1sw == ON && MC2sw == ON && MC3sw == ON) {
-    Serial.print("P998\r");
+    Serial.print("P998\rB0\r");
+  }
+  if (BR3sw == ON &&  MC0sw == ON && MC1sw == ON && MC2sw == ON && MC3sw == OFF) {
+    Serial.print("P3\rB0\r");
+  }
+  if (BR3sw == ON &&  MC0sw == ON && MC1sw == OFF && MC2sw == OFF && MC3sw == OFF) {
+    Serial.print("P1\rB0\r");
+  }
+  if (BR3sw == ON &&  MC0sw == ON && MC1sw == ON && MC2sw == OFF && MC3sw == OFF) {
+    Serial.print("P2\rB0\r");
   }
   bool buttonPB0Press = !digitalRead(PB0);
   if (buttonPB0PressPrev != buttonPB0Press) {
